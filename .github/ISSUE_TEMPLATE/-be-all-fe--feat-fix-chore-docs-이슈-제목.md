@@ -1,7 +1,7 @@
 ---
-name: Custom issue template
+name: "[BE/ALL/FE] Feat/Fix/Chore/Docs 이슈 제목"
 about: "[BE/ALL/FE] Feat/Fix/Chore/Docs 이슈 제목"
-title: ''
+title: "[BE/ALL/FE] Feat/Fix/Chore/Docs 이슈 제목"
 labels: ''
 assignees: ''
 
