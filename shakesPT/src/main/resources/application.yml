@@ -1,0 +1,40 @@
+server:
+  port: 8090
+
+spring:
+  application:
+    name: shakesPT
+
+  sql:
+    init:
+      encoding: UTF-8
+      mode: always
+
+  datasource:
+#    H2 ??
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:tcp://localhost/~/shakesPT
+    username: shakesPT
+    password:
+
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: create
+    #      ddl-auto: none
+    defer-datasource-initialization: true
+    properties:
+      hibernate:
+        format_sql: true
+        use_sql_comments: true
+        default_batch_fetch_size: 1000
+
+    open-in-view: false
+logging:
+  level:
+    org:
+      hibernate:
+        sql: debug
+        type:
+          descriptor:
+            sql: trace
