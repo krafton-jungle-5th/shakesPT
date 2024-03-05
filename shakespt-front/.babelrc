@@ -1,0 +1,9 @@
+// .babelrc
+
+{
+    "presets": [
+      "babel-preset-expo",
+      "@babel/preset-react" // 추가된 부분
+    ]
+  }
+  
