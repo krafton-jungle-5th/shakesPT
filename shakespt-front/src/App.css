@@ -83,6 +83,9 @@ body, html {
 .content-text {
     margin: 0;
     font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .card-style {
@@ -120,4 +123,9 @@ body, html {
     width: 100px;
     border: solid #654184 10px;
     font-weight: bold;
+}
+
+.dropdown-custom {
+    display: flex;
+    margin-left: 80%;
 }
