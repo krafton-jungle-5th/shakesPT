@@ -10,6 +10,7 @@ body, html {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    margin: 0% 20% 0% 20%;
 }
 
 .flex {
@@ -61,7 +62,17 @@ body, html {
 .content-container {
     align-items: center;
     text-align: center;
-    width: 1000px; /* 카드 컨테이너의 고정 너비 */
+    border-radius: 20px;
+    border: solid #44A2AA 10px;
+    background-color: white;
+    margin: 2%;
+    padding: 2%;
+}
+
+.append-card-container {
+    align-items: center;
+    text-align: center;
+    width: 96%;
     border-radius: 20px;
     border: solid #44A2AA 10px;
     background-color: white;
@@ -75,12 +86,20 @@ body, html {
 }
 
 .card-style {
-    height: 250px !important;
+    border-radius: 20px;
+    border: solid #654184 10px;
 }
 
 .card-image {
     height: 250px !important;
     object-fit: contain; /* 이미지가 비율을 유지하면서 컨테이너를 채우도록 설정 */
+}
+
+.card-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 2%;
 }
 
 .wrap-vertical {
@@ -94,4 +113,11 @@ body, html {
     white-space: normal; /* 내부 요소들이 줄바꿈되도록 설정 */
     flex: 0 0 auto; /* 카드의 너비를 자동으로 조절하지 않도록 설정 */
     margin-right: 10px; /* 카드 사이의 간격을 설정 */
+}
+
+.border-tag {
+    border-radius: 20px;
+    width: 100px;
+    border: solid #654184 10px;
+    font-weight: bold;
 }
