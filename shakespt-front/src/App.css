@@ -129,3 +129,33 @@ body, html {
     display: flex;
     margin-left: 80%;
 }
+
+.modal-container {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center;
+    align-content: center;
+    text-align: center;
+}
+
+.modal-photo {
+    width: 300px;
+    margin: auto;
+    border-radius: 20px;
+    border: solid #654184 5px;
+}
+
+.default-image {
+    flex-wrap : wrap;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    height: 23rem;
+    border-radius: 30px;
+    margin-bottom: 15px;
+}
+
+.plus {
+    width: 20%;
+    height: 20%;
+}

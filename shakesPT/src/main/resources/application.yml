@@ -1,5 +1,5 @@
 server:
-  port: 8090
+  port: 8080
 
 spring:
   application:
@@ -11,7 +11,6 @@ spring:
       mode: always
 
   datasource:
-#    H2 ??
     driver-class-name: org.h2.Driver
     url: jdbc:h2:tcp://localhost/~/shakesPT
     username: shakesPT
@@ -21,7 +20,7 @@ spring:
     show-sql: true
     hibernate:
       ddl-auto: create
-    #      ddl-auto: none
+#      ddl-auto: none
     defer-datasource-initialization: true
     properties:
       hibernate:
@@ -30,6 +29,7 @@ spring:
         default_batch_fetch_size: 1000
 
     open-in-view: false
+
 logging:
   level:
     org:
