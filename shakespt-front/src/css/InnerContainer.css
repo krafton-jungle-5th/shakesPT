@@ -1,0 +1,19 @@
+@import '../styles/ThemeColor.css';
+
+.Inner{
+    height: inherit;
+    width:100%;
+    border: var(--default-btn-color) solid 0.5rem;
+    background-color: white;
+    margin-top:2%;
+}
+.append-card-container{
+    border: var(--out-line-color) solid 0.7rem;
+    width:90%;
+    background-color: white;
+    margin-top: 1%;
+    border-radius: 0.5rem;
+}
+.FaCameraRetro{
+    fill: var(--point-btn-color);
+}
