@@ -96,14 +96,16 @@ margin-right: 2%;}
     display: inline-flex; /* 내부 요소들을 가로로 나열하기 위해 inline-flex 사용 */
     white-space: normal; /* 내부 요소들이 줄바꿈되도록 설정 */
     flex: 0 0 auto; /* 카드의 너비를 자동으로 조절하지 않도록 설정 */
-    margin-right: 10px; /* 카드 사이의 간격을 설정 */
+    margin-right: 0.5rem; /* 카드 사이의 간격을 설정 */
     margin-top:2%;
     margin-bottom:2%;
+    margin-left:0.5rem
 }
 .show-dropdown{
     background-color: azure;
 }
 .border-tag {
+    background-color: white;
     border-radius: 20px;
     width: 100px;
     border: var(--default-btn-color) solid 0.5rem;
@@ -112,6 +114,42 @@ margin-right: 2%;}
     margin-left:2%;
     margin-bottom: 2%;
 }
+.modal-container {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center;
+    align-content: center;
+    text-align: center;
+}
+
+.modal-photo {
+    width: 300px;
+    font-weight: bold;
+    text-decoration: underline;
+    margin: auto;
+    border-radius: 20px;
+    border: var(--default-btn-color) solid 0.5rem;
+    margin-bottom: 2%;
+}
+.modal-photo:hover{
+    background-color: var(--hover-color);
+    cursor: pointer;
+}
+
+.default-image {
+    flex-wrap : wrap;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    height: 23rem;
+    border-radius: 30px;
+    margin-bottom: 15px;
+}
+
+.plus {
+    width: 20%;
+    height: 20%;
+}
 .wrap-vertical::-webkit-scrollbar {
     height: 0.8rem; /* 가로 스크롤바 높이 */
     width: 0.7rem;
@@ -119,4 +157,13 @@ margin-right: 2%;}
   /* 스크롤바 막대 */
 ::-webkit-scrollbar-track {
     background-color: transparent;
+}
+.wrap-vertical::-webkit-scrollbar-thumb{
+    background-color: var(--point-btn-color);
+}
+.wrap-vertical::-webkit-scrollbar-thumb:hover{
+background-color: #FFB300;
+}
+.ref{
+    display: none;
 }

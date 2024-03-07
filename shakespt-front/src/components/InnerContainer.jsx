@@ -5,14 +5,22 @@ import DropdownButton from "react-bootstrap/DropdownButton";
 import Dropdown from "react-bootstrap/Dropdown";
 import { FaFilter } from "react-icons/fa";
 import { WrapVertical } from "./StoryBox";
+import VerticallyCenteredModal from "./Modal";
 
 export const Inner = () => {
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const handleStartStoryClick = () => {
+    setModalOpen(true);
+  };
+
   return (
     <div className="Inner">
-      <StartStory />
+      <StartStory onClick={handleStartStoryClick} />
+      <Modal show={modalOpen} onHide={() => setModalOpen(false)} />
       <DropFilter />
-      {/*이곳에 무한 스크롤 관련 옵션을 넣어야함*/}
-      {/*서버에서 요청한 값을 map으로 돌리며 해당 component를 생성*/}
+      {/* 이곳에 무한 스크롤 관련 옵션을 넣어야 함 */}
+      {/* 서버에서 요청한 값을 map으로 돌리며 해당 component를 생성 */}
       <div>
         <WrapVertical />
         <WrapVertical />
@@ -28,18 +36,19 @@ export const Inner = () => {
   );
 };
 
-export const StartStory = ({ setModalOpen }) => {
+export const StartStory = ({ onClick }) => {
   return (
-    <button
-      className="append-card-container"
-      onClick={() => setModalOpen(true)}
-    >
+    <button className="append-card-container" onClick={onClick}>
       <h3 className="content-text">
         당신의 이야기를 시작해주세요
         <FaCameraRetro className="FaCameraRetro" />
       </h3>
     </button>
   );
+};
+
+export const Modal = ({ show, onHide }) => {
+  return <VerticallyCenteredModal show={show} onHide={onHide} />;
 };
 
 const DropFilter = () => {
