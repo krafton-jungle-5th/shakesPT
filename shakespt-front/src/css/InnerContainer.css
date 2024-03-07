@@ -2,7 +2,7 @@
 @import '~bootstrap/dist/css/bootstrap.min.css';
 
 .Inner{
-    height: inherit;
+    height: 100%;
     width:100%;
     border: var(--default-btn-color) solid 0.5rem;
     background-color: #ffe7f1;

@@ -6,6 +6,7 @@ import Dropdown from "react-bootstrap/Dropdown";
 import { FaFilter } from "react-icons/fa";
 import { WrapVertical } from "./StoryBox";
 import VerticallyCenteredModal from "./Modal";
+import HiddenInView from "./InfinityScroll";
 
 export const Inner = () => {
   const [modalOpen, setModalOpen] = useState(false);
@@ -19,19 +20,14 @@ export const Inner = () => {
       <StartStory onClick={handleStartStoryClick} />
       <Modal show={modalOpen} onHide={() => setModalOpen(false)} />
       <DropFilter />
-      {/* 이곳에 무한 스크롤 관련 옵션을 넣어야 함 */}
+      <HiddenInView />
+      <WrapVertical />
+      <WrapVertical />
+      <WrapVertical />
+      <WrapVertical />
+      <WrapVertical />
+
       {/* 서버에서 요청한 값을 map으로 돌리며 해당 component를 생성 */}
-      <div>
-        <WrapVertical />
-        <WrapVertical />
-        <WrapVertical />
-        <WrapVertical />
-        <WrapVertical />
-        <WrapVertical />
-        <WrapVertical />
-        <WrapVertical />
-        <WrapVertical />
-      </div>
     </div>
   );
 };
