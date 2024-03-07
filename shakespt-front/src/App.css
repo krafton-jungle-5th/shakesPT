@@ -1,38 +1,162 @@
-.App {
-  text-align: center;
+body, html {
+    width: 100%;
+    height: 100%;
+    /* 배경 고정 설정 */
+    background: linear-gradient(to top, #9DE9DB, #654184) fixed;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.mainContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0% 20% 0% 20%;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.flex {
+    flex: 1;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 30px 10px 30px;
 }
 
-.App-link {
-  color: #61dafb;
+.content {
+    display: flex;
+    flex-direction: column;
+    border: solid #654185 15px;
+    border-radius: 20px;
+    align-items: center;
+    justify-content: center;
+    margin: 0px 20px 20px 20px;
+    background-color: white;
+    padding : 0px 10px 10px 10px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.logo {
+    width: 50%;
+}
+
+.search {
+    border-radius: 50px;
+    border: solid #ABD0BC 10px;
+    background-color: white;
+    margin: 2%;
+    padding: 1%;
+}
+
+.search-box {
+    border: none !important;
+    border-radius: 100px !important;
+}
+
+.search-button {
+    border: none !important;
+    border-radius: 100px !important;
+}
+
+.content-container {
+    align-items: center;
+    text-align: center;
+    border-radius: 20px;
+    border: solid #44A2AA 10px;
+    background-color: white;
+    margin: 2%;
+    padding: 2%;
+    transition: 150ms;
+}
+
+.append-card-container {
+    align-items: center;
+    text-align: center;
+    width: 96%;
+    border-radius: 20px;
+    border: solid #44A2AA 10px;
+    background-color: white;
+    margin: 2%;
+    padding: 2%;
+}
+
+.content-text {
+    margin: 0;
+    font-weight: bold;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-style {
+    border-radius: 20px;
+    border: solid #654184 10px;
+}
+
+.card-image {
+    height: 250px !important;
+    object-fit: contain; /* 이미지가 비율을 유지하면서 컨테이너를 채우도록 설정 */
+}
+
+.card-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 2%;
+}
+
+.wrap-vertical {
+    overflow-x: auto; /* 내용이 넘칠 경우 가로 스크롤바를 표시 */
+    white-space: nowrap; /* 내부 요소들이 줄바꿈되지 않고 한 줄로 표시 */
+    width: auto; /* 가로 스크롤 요소의 너비를 자동으로 조절 */
+}
+
+.card-container {
+    display: inline-flex; /* 내부 요소들을 가로로 나열하기 위해 inline-flex 사용 */
+    white-space: normal; /* 내부 요소들이 줄바꿈되도록 설정 */
+    flex: 0 0 auto; /* 카드의 너비를 자동으로 조절하지 않도록 설정 */
+    margin-right: 10px; /* 카드 사이의 간격을 설정 */
+}
+
+.border-tag {
+    border-radius: 20px;
+    width: 100px;
+    border: solid #654184 10px;
+    font-weight: bold;
+}
+
+.dropdown-custom {
+    display: flex;
+    margin-left: 80%;
+}
+
+.modal-container {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center;
+    align-content: center;
+    text-align: center;
+}
+
+.modal-photo {
+    width: 300px;
+    margin: auto;
+    border-radius: 20px;
+    border: solid #654184 5px;
+}
+
+.default-image {
+    flex-wrap : wrap;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    height: 23rem;
+    border-radius: 30px;
+    margin-bottom: 15px;
+}
+
+.plus {
+    width: 20%;
+    height: 20%;
 }
