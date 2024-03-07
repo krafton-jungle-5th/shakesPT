@@ -1,22 +1,12 @@
 /* Header.css */
 
 .header {
-    text-align: center; /* 수평 중앙 정렬 */
-    display: flex; /* 부모 요소를 플렉스 컨테이너로 설정 */
-    align-items: center; /* 세로 중앙 정렬을 위해 추가 */
+    display: ruby; /* 부모 요소를 플렉스 컨테이너로 설정 */
   }
   
-  .shakes_pt {
-    margin-left: 35%;
-    width: 6.87%;
-    height: 4.87%;
-    padding-top: 1.65%;
-}
-  
   .logo {
-    margin-left: 2%;
-    width: 16.5%;
-    height: auto;
+    width:70%;
+    height: 7rem;
     display: block;
     padding-top: 1.65%;
   }
