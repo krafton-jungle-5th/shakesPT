@@ -1,13 +1,105 @@
 import './App.css';
 import {Button, Dropdown, DropdownButton, Form, InputGroup} from 'react-bootstrap'
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import WrapVertical from "./components/WrapVertical";
 import {FaCameraRetro} from "react-icons/fa";
 import VerticallyCenteredModal from "./components/VerticallyCenteredModal";
+import { useInView } from 'react-intersection-observer';
+import {useImmer} from "use-immer";
 
 function App() {
 
+    const dummyData = [
+        {
+            "topicId" : 1,
+            "story" : [
+                {"image" : "/assets/cola.jpg", "story" : "귀여운 강아지 한마리가 앉아있습니다."},
+                {"image" : "/assets/cola.jpg", "story" : "다시봐도 귀엽습니다."},
+                {"image" : "/assets/cola.jpg", "story" : "."},
+                {"image" : "/assets/cola.jpg", "story" : "귀여운 강아지 한마리가 앉아있습니다."},
+                {"image" : "/assets/cola.jpg", "story" : "귀여운 강아지 한마리가 앉아있습니다."},
+                {"image" : "/assets/cola.jpg", "story" : "귀여운 강아지 한마리가 앉아있습니다."},
+                {"image" : "/assets/cola.jpg", "story" : "귀여운 강아지 한마리가 앉아있습니다."},
+                {"image" : "/assets/cola.jpg", "story" : "귀여운 강아지 한마리가 앉아있습니다."},
+            ]
+        },
+        {
+            "topicId" : 2,
+            "story" : [
+                {"image" : "/assets/img.png", "story" : "귀여운 강아지 한마리가 앉아있습니다."},
+                {"image" : "/assets/img.png", "story" : "귀여운 강아지 한마리가 앉아있습니다."},
+                {"image" : "/assets/img.png", "story" : "귀여운 강아지 한마리가 앉아있습니다."},
+                {"image" : "/assets/img.png", "story" : "귀여운 강아지 한마리가 앉아있습니다."},
+                {"image" : "/assets/img.png", "story" : "귀여운 강아지 한마리가 앉아있습니다."},
+                {"image" : "/assets/img.png", "story" : "귀여운 강아지 한마리가 앉아있습니다."},
+                {"image" : "/assets/img.png", "story" : "귀여운 강아지 한마리가 앉아있습니다."},
+                {"image" : "/assets/img.png", "story" : "귀여운 강아지 한마리가 앉아있습니다."},
+                {"image" : "/assets/img.png", "story" : "귀여운 강아지 한마리가 앉아있습니다."},
+                {"image" : "/assets/img.png", "story" : "귀여운 강아지 한마리가 앉아있습니다."},
+            ]
+        },
+        {
+            "topicId" : 3,
+            "story" : [
+                {"image" : "/assets/img.png", "story" : "귀여운 강아지 한마리가 앉아있습니다."},
+                {"image" : "/assets/img.png", "story" : "귀여운 강아지 한마리가 앉아있습니다."},
+                {"image" : "/assets/img.png", "story" : "귀여운 강아지 한마리가 앉아있습니다."},
+                {"image" : "/assets/img.png", "story" : "귀여운 강아지 한마리가 앉아있습니다."},
+                {"image" : "/assets/img.png", "story" : "귀여운 강아지 한마리가 앉아있습니다."},
+                {"image" : "/assets/img.png", "story" : "귀여운 강아지 한마리가 앉아있습니다."},
+                {"image" : "/assets/img.png", "story" : "귀여운 강아지 한마리가 앉아있습니다."},
+                {"image" : "/assets/img.png", "story" : "귀여운 강아지 한마리가 앉아있습니다."},
+                {"image" : "/assets/img.png", "story" : "귀여운 강아지 한마리가 앉아있습니다."},
+                {"image" : "/assets/img.png", "story" : "귀여운 강아지 한마리가 앉아있습니다."},
+            ]
+        },
+        {
+            "topicId" : 4,
+            "story" : [
+                {"image" : "/assets/img.png", "story" : "귀여운 강아지 한마리가 앉아있습니다."},
+                {"image" : "/assets/img.png", "story" : "귀여운 강아지 한마리가 앉아있습니다."},
+                {"image" : "/assets/img.png", "story" : "귀여운 강아지 한마리가 앉아있습니다."},
+                {"image" : "/assets/img.png", "story" : "귀여운 강아지 한마리가 앉아있습니다."},
+                {"image" : "/assets/img.png", "story" : "귀여운 강아지 한마리가 앉아있습니다."},
+                {"image" : "/assets/img.png", "story" : "귀여운 강아지 한마리가 앉아있습니다."},
+                {"image" : "/assets/img.png", "story" : "귀여운 강아지 한마리가 앉아있습니다."},
+                {"image" : "/assets/img.png", "story" : "귀여운 강아지 한마리가 앉아있습니다."},
+                {"image" : "/assets/img.png", "story" : "귀여운 강아지 한마리가 앉아있습니다."},
+                {"image" : "/assets/img.png", "story" : "귀여운 강아지 한마리가 앉아있습니다."},
+            ]
+        },
+        {
+            "topicId" : 5,
+            "story" : [
+                {"image" : "/assets/img.png", "story" : "귀여운 강아지 한마리가 앉아있습니다."},
+                {"image" : "/assets/img.png", "story" : "귀여운 강아지 한마리가 앉아있습니다."},
+                {"image" : "/assets/img.png", "story" : "귀여운 강아지 한마리가 앉아있습니다."},
+                {"image" : "/assets/img.png", "story" : "귀여운 강아지 한마리가 앉아있습니다."},
+                {"image" : "/assets/img.png", "story" : "귀여운 강아지 한마리가 앉아있습니다."},
+                {"image" : "/assets/img.png", "story" : "귀여운 강아지 한마리가 앉아있습니다."},
+                {"image" : "/assets/img.png", "story" : "귀여운 강아지 한마리가 앉아있습니다."},
+                {"image" : "/assets/img.png", "story" : "귀여운 강아지 한마리가 앉아있습니다."},
+                {"image" : "/assets/img.png", "story" : "귀여운 강아지 한마리가 앉아있습니다."},
+                {"image" : "/assets/img.png", "story" : "귀여운 강아지 한마리가 앉아있습니다."},
+            ]
+        },
+    ]
+
+    const [page, setPage] = useState(0);
+    const [contentArray, updateContentArray] = useImmer(dummyData);
+    const [ref, inView] = useInView();
+    const productFetch = () => {
+        updateContentArray([...contentArray, ...dummyData])
+    }
+
     const [modalOpen, setModalOpen] = useState(false);
+
+    useEffect(() => {
+        if (inView) {
+            console.log(inView, "무한 스크롤 요청")
+            productFetch()
+        }
+    }, [inView]);
 
     return (
         <div className="mainContainer">
@@ -43,17 +135,14 @@ function App() {
                     {/*이곳에 무한 스크롤 관련 옵션을 넣어야함*/}
                     {/*서버에서 요청한 값을 map으로 돌리며 해당 component를 생성*/}
                     <div>
-                        <WrapVertical/>
-                        <WrapVertical/>
-                        <WrapVertical/>
-                        <WrapVertical/>
-                        <WrapVertical/>
-                        <WrapVertical/>
-                        <WrapVertical/>
-                        <WrapVertical/>
-                        <WrapVertical/>
-
+                        {contentArray.map((props) => {
+                            const {topicId, story} = props
+                            return (
+                                <WrapVertical key={topicId} topicId={topicId} story={story}/>
+                            )
+                        })}
                     </div>
+                    <div ref={ref}></div>
                 </div>
             </div>
         </div>

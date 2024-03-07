@@ -1,15 +1,15 @@
 import React from 'react';
 import {Card} from "react-bootstrap";
 
-function CardForm(props) {
+function CardForm({image, story}) {
     return (
         <div className="card-container">
             <div className="card-style">
                 <Card>
-                    <Card.Img className="card-image" variant="top" src="/assets/cola.jpg"/>
+                    <Card.Img className="card-image" variant="top" src={image}/>
                     <Card.Body>
                         <Card.Text style={{wordWrap: "normal"}}>
-                            귀여운 강아지 한마리가 앉아있습니다
+                            {story}
                         </Card.Text>
                     </Card.Body>
                 </Card>

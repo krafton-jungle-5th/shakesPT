@@ -67,6 +67,7 @@ body, html {
     background-color: white;
     margin: 2%;
     padding: 2%;
+    transition: 150ms;
 }
 
 .append-card-container {
