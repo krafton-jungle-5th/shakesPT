@@ -1,11 +1,8 @@
 package org.example.shakespt.Topic;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 @RestController
 @RequiredArgsConstructor
@@ -14,27 +11,24 @@ public class TopicController {
     private final TopicService tService;
 
     @GetMapping("")
-    public Map getAll() {
-        ArrayList<TopicDto> topics = tService.findAll();
-        Map map = new HashMap<>();
-        map.put("topics", topics);
-        return map;
+    public Page<TopicDto> getPagingTopic(@RequestParam(value = "page", defaultValue = "1") int page,
+                                 @RequestParam(value = "status", required = false) String status,
+                                 @RequestParam(value = "tag", required = false) String tag) {
+
+        Page<TopicDto> pagingTopic = null;
+        if (status.isEmpty() && tag.isEmpty()) {
+            pagingTopic = tService.pagingTopic(page);
+        } else if (!status.isEmpty()) {
+            pagingTopic = tService.pagingTopicByStatus(page, status);
+        } else {
+            pagingTopic = tService.pagingTopicByTag(page, tag);
+        }
+        return pagingTopic;
     }
 
     @PostMapping("/add")
-    public Map addTopic(TopicDto tDto) {
-        TopicDto topic = tService.save(tDto);
-        System.out.println("topic = " + topic);
-        Map map = new HashMap<>();
-        map.put("topic", topic);
-        return map;
+    public TopicDto addTopic(TopicDto tDto) {
+        return tService.save(tDto);
     }
-
-    // 키워드로 검색
-//    @GetMapping("/search/{keyword}")
-//    public Map searchTopics(@PathVariable("keyword") String keyword){
-//
-//    }
-
 
 }
