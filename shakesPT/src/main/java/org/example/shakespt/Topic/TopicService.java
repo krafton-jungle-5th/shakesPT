@@ -1,6 +1,10 @@
 package org.example.shakespt.Topic;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -33,5 +37,25 @@ public class TopicService {
         return TopicDto.toTopicDto(topic);
     }
 
+    // 기본 페이지 정렬
+    public Page<TopicDto> pagingTopic(int page) {
+        Pageable pageable = PageRequest.of(page, 10, Sort.by(Sort.Direction.ASC, "id"));
+        Page<Topic> topicPage = tDao.findAll(pageable);
+        return topicPage.map(TopicDto::toTopicDto);   //메서드 레퍼런스
+    }
+
+    // 완성 상태에 따른 토픽 정렬
+    public Page<TopicDto> pagingTopicByStatus(int page, String status) {
+        Pageable pageable = PageRequest.of(page, 10, Sort.by(Sort.Direction.ASC, "id"));
+        Page<Topic> topicPage = tDao.findByStatus(pageable, status);
+        return topicPage.map(TopicDto::toTopicDto);
+    }
+
+    // 태그(키워드)로 검색
+    public Page<TopicDto> pagingTopicByTag(int page, String tag) {
+        Pageable pageable = PageRequest.of(page, 10, Sort.by(Sort.Direction.ASC, "id"));
+        Page<Topic> topicPage = tDao.findByTagContains(pageable, tag);
+        return topicPage.map(TopicDto::toTopicDto);
+    }
 
 }
