@@ -13,9 +13,6 @@ function VerticallyCenteredModal(props) {
     //FileReader 인스턴스의 result라는 속성에 담아줌
     return new Promise((resolve) => {
       reader.onload = () => {
-        // FileReader가 성공적으로 파일을 읽어들였을 때 트리거 되는 이벤트 핸들러
-        // 이 내부에 우리가 원하는 로직을 넣어주면 됨
-        // 이번과 같은 경우는 setState로 img값 받기
         setImgSrc(reader.result);
         resolve();
       };

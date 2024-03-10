@@ -1,5 +1,6 @@
 import './css/Main.css'
 import './css/InnerContainer.css'
+import './css/Button.css'
 import React, {useEffect, useState} from "react";
 import { WrapVertical } from './components/StoryBox';
 import { Inner, Modal, StartStory,DropFilter } from './components/InnerContainer';
