@@ -3,10 +3,11 @@
 
 .Inner{
     height: 100%;
-    width:100%;
+    width:90%;
     border: var(--default-btn-color) solid 0.5rem;
-    background-color: #ffe7f1;
+    background-color: var(--back-color);
     margin-top:2%;
+    margin-inline: auto;
     text-align: center;
 }
 .append-card-container{
@@ -20,7 +21,7 @@
     fill: var(--point-btn-color);
 }
 #dropdown-basic-button{
-    background-color:#d6d3d3; 
+    background-color:white; 
     border: var(--default-btn-color) solid 0.5rem;
     color:black;
     width: 10rem;
@@ -28,15 +29,17 @@
     border-radius: 0.5rem;
     margin-top: 2%;  
     margin-right: 2%;
-  
   }
+#dropdown-basic-button:hover{
+    background-color: #d6d3d3;
+}
 .dropdown{
     display: flex;
     justify-content: flex-end;
 
 }
 .align-items-center {
-    margin-right: 0.3%;
+    margin-right: 3rem;
     justify-content: end;
     display: flex;
 }
@@ -83,6 +86,7 @@
     margin-top:2%;
 margin-right: 2%;}
 .wrap-vertical {
+    background-color: white;
     overflow-x: overlay; /* 내용이 넘칠 경우 가로 스크롤바를 표시 */
     white-space: nowrap; /* 내부 요소들이 줄바꿈되지 않고 한 줄로 표시 */
     width: 100%; /* 가로 스크롤 요소의 너비를 자동으로 조절 */
@@ -112,6 +116,7 @@ margin-right: 2%;}
     font-weight: bold;
     margin-right: 2%;
     margin-left:2%;
+    text-align: center;
     margin-bottom: 2%;
 }
 .modal-container {
@@ -165,5 +170,16 @@ margin-right: 2%;}
 background-color: #FFB300;
 }
 .ref{
-    display: none;
+    display: hidden;
+}
+.story-tag{
+    text-align: center;
+    background-color: white;
+    border-radius: 20px;
+    width: 100px;
+    border: var(--default-btn-color) solid 0.5rem;
+    font-weight: bold;
+    margin-right: 2%;
+    margin-left:2%;
+    margin-bottom: 2%;
 }

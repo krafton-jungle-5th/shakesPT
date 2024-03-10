@@ -4,9 +4,7 @@ import "../css/InnerContainer.css";
 import DropdownButton from "react-bootstrap/DropdownButton";
 import Dropdown from "react-bootstrap/Dropdown";
 import { FaFilter } from "react-icons/fa";
-import { WrapVertical } from "./StoryBox";
 import VerticallyCenteredModal from "./Modal";
-import HiddenInView from "./InfinityScroll";
 
 export const Inner = () => {
   const [modalOpen, setModalOpen] = useState(false);
@@ -19,15 +17,6 @@ export const Inner = () => {
     <div className="Inner">
       <StartStory onClick={handleStartStoryClick} />
       <Modal show={modalOpen} onHide={() => setModalOpen(false)} />
-      <DropFilter />
-      <HiddenInView />
-      <WrapVertical />
-      <WrapVertical />
-      <WrapVertical />
-      <WrapVertical />
-      <WrapVertical />
-
-      {/* 서버에서 요청한 값을 map으로 돌리며 해당 component를 생성 */}
     </div>
   );
 };
@@ -47,8 +36,8 @@ export const Modal = ({ show, onHide }) => {
   return <VerticallyCenteredModal show={show} onHide={onHide} />;
 };
 
-const DropFilter = () => {
-  const [selectedFilter, setSelectedFilter] = useState("latest"); // 초기값은 "latest"로 설정
+export const DropFilter = () => {
+  const [selectedFilter, setSelectedFilter] = useState("latest");
 
   const handleFilterChange = (filter) => {
     setSelectedFilter(filter);
@@ -97,5 +86,3 @@ const DropFilter = () => {
     </div>
   );
 };
-
-export default DropFilter;
