@@ -26,7 +26,7 @@ export function CardForm({ image, story }) {
     <div className="card-container">
       <div className="card-style">
         <Card>
-          <Card.Img className="card-image" variant="top" src="{image}" />
+          <Card.Img className="card-image" variant="top" src={image} />
           <Card.Body>
             <Card.Text style={{ wordWrap: "normal" }}>{story}</Card.Text>
           </Card.Body>
