@@ -11,6 +11,15 @@
     text-align: center;
     display: contents;
 }
+.scroll{
+    border: var(--default-btn-color)solid 0.5rem;
+    background-color: var(--back-color);
+    border-radius: 0.5rem;
+    margin-top:2%;
+    margin-left:1%;
+    margin-right:1%;
+    margin-bottom: 1%;
+}
 .append-card-container{
     border: var(--out-line-color) solid 0.7rem;
     width:90%;
