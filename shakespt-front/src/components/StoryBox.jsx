@@ -1,5 +1,6 @@
 import React from "react";
 import { Card } from "react-bootstrap";
+import { share_modal } from "./Share_Modal";
 
 export function WrapVertical({ topicId, story }) {
   return (
@@ -17,13 +18,28 @@ export function WrapVertical({ topicId, story }) {
 
           {story.length === 10 ? (
             <div>
-              <button className="share">
+              <button
+                className="share"
+                onClick={() => share_modal(topicId, story)}
+              >
                 <span className="text">공유하기</span>
                 <span className="shimmer"></span>
               </button>{" "}
             </div>
           ) : (
-            <div className="border-tag">{story.length}/10</div>
+            <>
+              <div>
+                <button
+                  className="share"
+                  onClick={() => share_modal(topicId, story)}
+                >
+                  <span className="text">공유하기</span>
+                  <span className="shimmer"></span>
+                </button>{" "}
+              </div>
+
+              <div className="border-tag">{story.length}/10</div>
+            </>
           )}
         </div>
       </div>

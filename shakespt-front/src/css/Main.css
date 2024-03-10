@@ -53,7 +53,9 @@ body, html {
     padding: 1%;
 }
 
+
 .Search_Box{
+  text-align: end;
     width:100%;
     background-color: white;
     margin-top: 1%;
@@ -62,14 +64,17 @@ body, html {
     transition: border-color 0.3s;
   }
   .Search_Box.clicked {
-    /* 추가적인 스타일 정의 */
+    text-align: start;
     border-color: var(--serach-btn-click); /* 클릭되었을 때의 테두리 색상 예시 */
     font-weight: bold; /* 클릭되었을 때 글자 굵게 예시 */
+    cursor: pointer;
   }
   .Search_container{
     text-align: center;
   }
-
+  .Search_Box:hover{
+    cursor: pointer;
+  }
 body::-webkit-scrollbar-track {
     background-color: #5e366e; /* 보라색 계열 */
   }

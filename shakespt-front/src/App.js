@@ -7,7 +7,7 @@ import { Inner, Modal, StartStory,DropFilter } from './components/InnerContainer
 import { useInView } from 'react-intersection-observer';
 import {useImmer} from "use-immer";
 import Home from './components/Home';
-const dummyData = [
+export const dummyData = [
     {
         "topicId" : 1,
         "story" : [
@@ -119,7 +119,6 @@ function App() {
       <>
         <Home />
         <Inner/>
-        <Modal/>
         <DropFilter/>
         <div className='scroll'>
           {contentArray.map((props) => {
