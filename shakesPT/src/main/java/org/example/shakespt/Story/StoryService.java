@@ -21,7 +21,7 @@ public class StoryService {
     // 스토리 저장
     @Transactional
     public StoryDto save(StoryDto sDto) {
-        Story story = sDao.save(StoryDto.toStory(sDto));
+        Story story = sDao.save(StoryDto.toEntity(sDto));
         return StoryDto.toStoryDto(story);
     }
 

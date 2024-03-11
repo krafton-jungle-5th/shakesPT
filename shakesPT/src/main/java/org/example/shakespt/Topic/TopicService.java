@@ -38,22 +38,22 @@ public class TopicService {
     }
 
     // 기본 페이지 정렬
-    public Page<TopicDto> pagingTopic(int page) {
-        Pageable pageable = PageRequest.of(page, 10, Sort.by(Sort.Direction.ASC, "id"));
+    public Page<ViewResponseTopicDto> pagingTopic(int page) {
+        Pageable pageable = PageRequest.of(page, 10, Sort.by(Sort.Direction.ASC, "topicId"));
         Page<Topic> topicPage = tDao.findAll(pageable);
-        return topicPage.map(TopicDto::toTopicDto);   //메서드 레퍼런스
+        return topicPage.map(ViewResponseTopicDto::toDto);   //메서드 레퍼런스
     }
 
     // 완성 상태에 따른 토픽 정렬
     public Page<TopicDto> pagingTopicByStatus(int page, String status) {
-        Pageable pageable = PageRequest.of(page, 10, Sort.by(Sort.Direction.ASC, "id"));
+        Pageable pageable = PageRequest.of(page, 10, Sort.by(Sort.Direction.ASC, "topicId"));
         Page<Topic> topicPage = tDao.findByStatus(pageable, status);
         return topicPage.map(TopicDto::toTopicDto);
     }
 
     // 태그(키워드)로 검색
     public Page<TopicDto> pagingTopicByTag(int page, String tag) {
-        Pageable pageable = PageRequest.of(page, 10, Sort.by(Sort.Direction.ASC, "id"));
+        Pageable pageable = PageRequest.of(page, 10, Sort.by(Sort.Direction.ASC, "topicId"));
         Page<Topic> topicPage = tDao.findByTagContains(pageable, tag);
         return topicPage.map(TopicDto::toTopicDto);
     }

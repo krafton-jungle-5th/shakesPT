@@ -19,7 +19,7 @@ public class StoryDto {
     private MultipartFile f;    // 파일 생성을 위해 작성
 
     // StoryDto -> Story
-    public static Story toStory(StoryDto dto) {
+    public static Story toEntity(StoryDto dto) {
         return Story.builder()
                 .summary(dto.getSummary())
                 .prompt(dto.getPrompt())

@@ -22,7 +22,6 @@ public class TopicDto {
     // TopicDto -> Topic
     public static Topic toTopic(TopicDto dto) {
         return Topic.builder()
-                .id(dto.getId())
                 .tag(dto.getTag())
                 .status(dto.getStatus())
                 .stories(dto.getStories())
@@ -32,7 +31,7 @@ public class TopicDto {
     // Topic -> TopicDto
     public static TopicDto toTopicDto(Topic topic) {
         return TopicDto.builder()
-                .id(topic.getId())
+                .id(topic.getTopicId())
                 .tag(topic.getTag())
                 .status(topic.getStatus())
                 .stories(topic.getStories())
