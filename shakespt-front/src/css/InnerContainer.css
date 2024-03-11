@@ -11,15 +11,21 @@
     text-align: center;
     display: contents;
 }
-.scroll{
-    border: var(--default-btn-color)solid 0.5rem;
-    background-color: var(--back-color);
+.scroll {
+    position: relative;
+    display: inline-block; /* 인라인 블록 요소로 만들어서 크기에 맞게 테두리를 적용 */
+    overflow: hidden; /* 내용이 넘치는 경우를 대비해서 오버플로우 감추기 */
+  
+    /* 첫 번째 테두리: 진한 검은색 */
+    border: 1.3rem solid #000;
+    background-color: var(--back-color); /* 배경색은 변수로 유지 */
     border-radius: 0.5rem;
-    margin-top:2%;
-    margin-left:1%;
-    margin-right:1%;
+    margin-top: 2%;
+    margin-left: 1%;
+    margin-right: 1%;
     margin-bottom: 1%;
-}
+  }
+  
 .append-card-container{
     border: var(--out-line-color) solid 0.7rem;
     width:90%;
@@ -102,14 +108,19 @@
 margin-right: 2%;}
 .wrap-vertical {
     background-color: white;
-    overflow-x: overlay; /* 내용이 넘칠 경우 가로 스크롤바를 표시 */
-    white-space: nowrap; /* 내부 요소들이 줄바꿈되지 않고 한 줄로 표시 */
-    width: 100%; /* 가로 스크롤 요소의 너비를 자동으로 조절 */
-    border:var(--out-line-color) solid 0.5rem;
-    border-radius: 2rem;
+    overflow-x: overlay;
+    white-space: nowrap;
+    width: 100%;
+    border-left: none; /* 왼쪽 테두리 제거 */
+    border-right: none; /* 오른쪽 테두리 제거 */
+    border-top: 1.5rem dashed var(--dow); /* 위쪽 dashed 테두리 */
+    border-bottom: 1.5rem dashed var(--dow); /* 아래쪽 dashed 테두리 */
     margin-bottom: 1.5%;
     margin-right: 1%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.6);
+
 }
+
 
 .card-container {
     display: inline-flex; /* 내부 요소들을 가로로 나열하기 위해 inline-flex 사용 */
