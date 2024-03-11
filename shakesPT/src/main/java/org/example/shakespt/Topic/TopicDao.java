@@ -8,6 +8,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface TopicDao extends JpaRepository<Topic, Long> {
     Page<Topic> findAll(Pageable pageable);
+
     Page<Topic> findByStatus(Pageable pageable, String status);
-    Page<Topic> findByTagContains(Pageable pageable, String tag);
+
+    Page<Topic> findByTagContains(Pageable pageable, String keyword);
 }

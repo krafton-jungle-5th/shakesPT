@@ -1,6 +1,8 @@
 package org.example.shakespt.Topic;
 
 import lombok.RequiredArgsConstructor;
+import org.example.shakespt.Story.StoryDto;
+import org.example.shakespt.Story.StoryService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -52,7 +54,7 @@ public class TopicService {
     }
 
     // 태그(키워드)로 검색
-    public Page<ViewResponseTopicDto> pagingTopicByTag(int page, String tag) {
+    public Page<ViewResponseTopicDto> pagingTopicByKeyword(int page, String tag) {
         Pageable pageable = PageRequest.of(page, 10, Sort.by(Sort.Direction.ASC, "topicId"));
         Page<Topic> topicPage = tDao.findByTagContains(pageable, tag);
         return topicPage.map(ViewResponseTopicDto::toDto);
