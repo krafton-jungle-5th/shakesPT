@@ -79,7 +79,7 @@
 
 .card-style {
     border-radius: 20px;
-    border: solid #654184 10px;
+    border: solid var(--default-btn-color) 10px;
 }
 
 .card-image {
@@ -127,8 +127,8 @@ margin-right: 2%;}
 }
 .border-tag {
     background-color: white;
-    border-radius: 20px;
-    width: 100px;
+    border-radius: 0.5rem;
+    width:6rem;
     border: var(--default-btn-color) solid 0.5rem;
     font-weight: bold;
     margin-right: 2%;
@@ -192,8 +192,8 @@ background-color: #FFB300;
 .story-tag{
     text-align: center;
     background-color: white;
-    border-radius: 20px;
-    width: 100px;
+    border-radius: 1.0rem;
+    width: 5rem;
     border: var(--default-btn-color) solid 0.5rem;
     font-weight: bold;
     margin-right: 2%;
