@@ -5,16 +5,16 @@ import lombok.Data;
 
 @Data
 @Builder
+// 프론트로 데이터 반환하기 위한 DTO
 public class ViewResponseStoryDto {
 
-	private byte[] image;
-	private String story;
+    private String fname;
+    private String summary;
 
-	public static ViewResponseStoryDto toDto(Story story) {
-		return ViewResponseStoryDto.builder()
-			.image(story.getImage())
-			.story(story.getSummary())
-			.build();
-	}
-
+    public static ViewResponseStoryDto toDto(Story story) {
+        return ViewResponseStoryDto.builder()
+                .fname(story.getFname())
+                .summary(story.getSummary())
+                .build();
+    }
 }
