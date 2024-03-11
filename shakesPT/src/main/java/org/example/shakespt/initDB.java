@@ -32,19 +32,26 @@ public class initDB {
 
         public void dbInitMember() {
 
-            for (int i = 0; i < 100; i++) {
-                Story story1 = getStory("1번 스토리", "1번 프롬프트");
-                Story story2 = getStory("2번 스토리", "2번 프롬프트");
+            for (int i = 0; i < 10; i++) {
                 Topic topic = getTopic("test", "test");
-
-                story1.setTopic(topic);
-                story2.setTopic(topic);
-                topic.getStories().add(story1);
-                topic.getStories().add(story2);
-
+                for (int j = 1; j <= 10; j++) {
+                    Story story = getStory("%d번 스토리".formatted(j), "%d번 프롬프트".formatted(j));
+                    topic.getStories().add(story);
+                    story.setTopic(topic);
+                    em.persist(story);
+                }
                 em.persist(topic);
-                em.persist(story1);
-                em.persist(story2);
+            }
+
+            for (int i = 0; i < 10; i++) {
+                Topic topic = getTopic("test", "test");
+                for (int j = 1; j < 9; j++) {
+                    Story story = getStory("%d번 스토리".formatted(j), "%d번 프롬프트".formatted(j));
+                    topic.getStories().add(story);
+                    story.setTopic(topic);
+                    em.persist(story);
+                }
+                em.persist(topic);
             }
 
         }

@@ -10,16 +10,8 @@ import {useImmer} from "use-immer";
 
 function App() {
 
-    // const dummyData = [
-    //     {
-    //         "topicId" : "",
-    //         "story" : [
-    //             {"image" : "", "story" : ""},
-    //         ]
-    //     },
-    // ]
-
     const [page, setPage] = useState(0);
+    const [inProgress, setInProgress] = useState(true);
     const [contentArray, updateContentArray] = useImmer([]);
     const [ref, inView] = useInView();
 
@@ -28,6 +20,9 @@ function App() {
             .then((result)=>{
                 updateContentArray(draft => [...draft, ...result.data.content]); // 이전 상태를 변경하는 방식으로 업데이트
                 console.log(result.data.content)
+                if(result.data.content.length === 0) {
+                    setInProgress(false)
+                }
             }) // 요청 성공시 실행코드
             .catch((error)=>{ console.log(error) }) // 요청 실패시 실행코드
         console.log(page)
@@ -37,7 +32,7 @@ function App() {
     const [modalOpen, setModalOpen] = useState(false);
 
     useEffect(() => {
-        if (inView) {
+        if (inView && inProgress) {
             console.log(inView, "무한 스크롤 요청")
             productFetch()
         }
@@ -77,9 +72,9 @@ function App() {
                     {/*이곳에 무한 스크롤 관련 옵션을 넣어야함*/}
                     {/*서버에서 요청한 값을 map으로 돌리며 해당 component를 생성*/}
                         {contentArray.map((props) => {
-                            const {topicId, story} = props
+                            const {topicId, length, story} = props
                             return (
-                                <WrapVertical key={topicId} topicId={topicId} story={story}/>
+                                <WrapVertical key={topicId} topicId={topicId} story={story} length={length}/>
                             )
                         })}
                     <div ref={ref}></div>
