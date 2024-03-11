@@ -29,7 +29,6 @@ public class initDB {
     static class InitService {
 
         private final EntityManager em;
-        private final TopicService tService;
 
         public void dbInitMember() {
 

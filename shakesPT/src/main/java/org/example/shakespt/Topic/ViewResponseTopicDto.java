@@ -14,6 +14,7 @@ public class ViewResponseTopicDto {
 	private Long topicId;
 	private String tag;
 	private List<ViewResponseStoryDto> story;
+	private Long length;
 
 	public static ViewResponseTopicDto toDto(Topic topic) {
 		return ViewResponseTopicDto.builder()
@@ -23,6 +24,7 @@ public class ViewResponseTopicDto {
 				.stream()
 				.map(ViewResponseStoryDto::toDto)
 				.toList())
+			.length((long)topic.getStories().size())
 			.build();
 	}
 }
