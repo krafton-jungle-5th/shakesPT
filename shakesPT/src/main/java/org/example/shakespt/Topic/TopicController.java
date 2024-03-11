@@ -11,11 +11,11 @@ public class TopicController {
     private final TopicService tService;
 
     @GetMapping("")
-    public Page<TopicDto> getPagingTopic(@RequestParam(value = "page", defaultValue = "1") int page,
+    public Page<ViewResponseTopicDto> getPagingTopic(@RequestParam(value = "page", defaultValue = "1") int page,
                                  @RequestParam(value = "status", required = false) String status,
                                  @RequestParam(value = "tag", required = false) String tag) {
 
-        Page<TopicDto> pagingTopic = null;
+        Page<ViewResponseTopicDto> pagingTopic = null;
         if (status.isEmpty() && tag.isEmpty()) {
             pagingTopic = tService.pagingTopic(page);
         } else if (!status.isEmpty()) {

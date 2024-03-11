@@ -45,17 +45,17 @@ public class TopicService {
     }
 
     // 완성 상태에 따른 토픽 정렬
-    public Page<TopicDto> pagingTopicByStatus(int page, String status) {
+    public Page<ViewResponseTopicDto> pagingTopicByStatus(int page, String status) {
         Pageable pageable = PageRequest.of(page, 10, Sort.by(Sort.Direction.ASC, "topicId"));
         Page<Topic> topicPage = tDao.findByStatus(pageable, status);
-        return topicPage.map(TopicDto::toTopicDto);
+        return topicPage.map(ViewResponseTopicDto::toDto);
     }
 
     // 태그(키워드)로 검색
-    public Page<TopicDto> pagingTopicByTag(int page, String tag) {
+    public Page<ViewResponseTopicDto> pagingTopicByTag(int page, String tag) {
         Pageable pageable = PageRequest.of(page, 10, Sort.by(Sort.Direction.ASC, "topicId"));
         Page<Topic> topicPage = tDao.findByTagContains(pageable, tag);
-        return topicPage.map(TopicDto::toTopicDto);
+        return topicPage.map(ViewResponseTopicDto::toDto);
     }
 
 }
