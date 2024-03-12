@@ -29,11 +29,9 @@ public class TopicController {
         return pagingTopic;
     }
 
-    @PostMapping("/add")
-    public TopicDto addTopic(TopicDto tDto, StoryDto sDto) {
-        tService.save(tDto);
-        sService.save(sDto);
-        return tService.save(tDto);
-    }
+//    @PostMapping("/add")
+//    public TopicDto addTopic(TopicDto tDto) {
+//        return tService.save(tDto);
+//    }
 
 }
