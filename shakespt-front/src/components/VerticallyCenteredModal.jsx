@@ -5,6 +5,7 @@ import { FaCameraRetro } from 'react-icons/fa';
 import { CiSquarePlus } from 'react-icons/ci';
 
 function VerticallyCenteredModal(props) {
+    const [prompt, setPrompt] = useState("");
     const [imgFile, setImgFile] = useState(null);
     const [imgSrc, setImgSrc] = useState('');
     const [isLoading, setIsLoading] = useState(false); // 통신 중임을 나타내는 상태 추가
@@ -18,11 +19,17 @@ function VerticallyCenteredModal(props) {
         };
     };
 
+    const handleChange = (event) => {
+        setPrompt(event.target.value); // 입력된 값으로 상태를 업데이트
+    };
+
     const handleSubmit = async () => {
         try {
             setIsLoading(true); // 통신 시작 시 isLoading 상태를 true로 설정
             const formData = new FormData();
             formData.append('image', imgFile);
+            formData.append('prompt', prompt);
+            console.log(imgFile, prompt)
             const response = await axios.post('YOUR_SERVER_ENDPOINT_URL', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
@@ -72,6 +79,7 @@ function VerticallyCenteredModal(props) {
                         aria-label="Example text with button addon"
                         aria-describedby="basic-addon1"
                         placeholder={'GPT한테 귀띔하기'}
+                        onChange={handleChange}
                     />
                 </InputGroup>
             </Modal.Body>
