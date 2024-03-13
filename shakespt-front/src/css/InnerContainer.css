@@ -186,9 +186,6 @@ margin-right: 2%;}
 .wrap-vertical::-webkit-scrollbar-thumb:hover{
 background-color: #FFB300;
 }
-.ref{
-    display: hidden;
-}
 .story-tag{
     text-align: center;
     background-color: white;
