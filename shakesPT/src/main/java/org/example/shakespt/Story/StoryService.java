@@ -12,11 +12,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.client.RestTemplate;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.List;
 
 @Service
 @RequiredArgsConstructor
@@ -34,24 +34,34 @@ public class StoryService {
     public DataResponseStoryDto saveDataResponseStoryDto(Long topicId, DataResponseStoryDto drDto, String path) {
         // 프론트에서 받아온 데이터 저장
         Story story = sDao.save(DataResponseStoryDto.toEntity(topicId, drDto));
+        System.out.println("story1 = " + story);
         // 받아온 데이터 중 GPT에게 보내는데 필요한 자료만 추출해 저장
-        ConvertRequestStoryDto crqDto = ConvertRequestStoryDto.toDto(story);
+        ConvertRequestStoryDto crqDto = ConvertRequestStoryDto.toDto(story, topicId);
+        List<Story> stories = sDao.findByTopicId(topicId);
+        for (Story s : stories) {
+            crqDto.getSummaryList().add(SummaryListStoryDto.toDto(s));
+        }
+        System.out.println("crqDto = " + crqDto);
         try {
             // Base64 인코딩
-            crqDto.setImage(imageToBase64(path, drDto.getFname(), drDto.getF()));
+            crqDto.setImage(imageToBase64(path, drDto.getFname()));
             // python 서버로 전송(추가 테스트 필요)
-//            sendToPython(crqDto);
+            sendToPython(crqDto);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
         return DataResponseStoryDto.toDto(story);
     }
 
+
     // GPT에서 생성한 tag와 summary 받아서 기존 데이터 수정
     @Transactional
     public ConvertResponseStoryDto saveConvertResponseStoryDto(ConvertResponseStoryDto crsDto) {
+        System.out.println("crsDto.getStoryId() = " + crsDto.getStoryId());
         Story story = sDao.findById(crsDto.getStoryId()).orElse(null);
+        System.out.println("story2 = " + story);
         Topic topic = tDao.findById(crsDto.getTopicId()).orElse(null);
+
         if (story != null && topic != null) {
             story.setSummary(crsDto.getSummary());
             topic.setTag(crsDto.getTag());
@@ -60,27 +70,41 @@ public class StoryService {
     }
 
     // 이미지 파일 base64 인코딩
-    public byte[] imageToBase64(String filePath, String fileName, MultipartFile imageFile) throws IOException {
-        byte[] base64Img = {};
+    public String imageToBase64(String filePath, String fileName) throws IOException {
+        String base64Img = "";
 
-        File saveFile = new File(filePath + fileName);
+        // 주어진 파일 경로와 파일 이름을 가지고 File 객체를 생성합니다.
+        File f = new File(filePath + fileName);
 
-        if (saveFile.exists() && saveFile.isFile() && saveFile.length() > 0) {
-            byte[] bt = new byte[(int) saveFile.length()];
+        // 파일이 존재하고, 파일인지(디렉토리가 아닌지), 그리고 크기가 0보다 큰지를 확인합니다.
+        if (f.exists() && f.isFile() && f.length() > 0) {
+            // 이미지 파일에서 읽어온 바이트를 저장할 배열을 초기화합니다.
+            byte[] bt = new byte[(int) f.length()];
+
+            // 이미지 파일로부터 바이트를 읽어오기 위해 FileInputStream을 초기화합니다.
             FileInputStream fis = null;
             try {
-                fis = new FileInputStream(saveFile);
+                fis = new FileInputStream(f);
+
+                // FileInputStream을 사용하여 바이트를 읽어와 bt 배열에 저장합니다.
                 fis.read(bt);
-                // Base64.encodeBase64 메소드의 반환 타입을 byte[]로 변환합니다.
-                base64Img = Base64.encodeBase64(bt, false);
+
+                // 읽어온 바이트 배열을 Base64로 인코딩한 후, 문자열로 변환하여 base64Img에 저장합니다.
+                // isChuncked : 여러 줄로 나눌 것인지?
+                base64Img = new String(Base64.encodeBase64(bt, false));
             } catch (Exception e) {
+                // 예외가 발생하면 예외를 던집니다.
                 throw e;
             } finally {
                 try {
+                    // FileInputStream을 닫습니다.
                     if (fis != null) {
                         fis.close();
                     }
+                } catch (IOException e) {
+                    // IOException이 발생하면 아무것도 하지 않습니다.
                 } catch (Exception e) {
+                    // 다른 예외가 발생하면 아무것도 하지 않습니다.
                 }
             }
         }

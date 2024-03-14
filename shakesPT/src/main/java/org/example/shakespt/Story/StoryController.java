@@ -1,16 +1,17 @@
 package org.example.shakespt.Story;
 
+import jakarta.annotation.Nullable;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.example.shakespt.Topic.TopicDto;
 import org.example.shakespt.Topic.TopicService;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 
 @Slf4j
 @CrossOrigin
@@ -23,12 +24,14 @@ public class StoryController {
     @Value("${spring.servlet.multipart.location}")
     private String path;
 
-    // 프론트에서 TopicId와 이미지, 프롬프트 데이터 받아오는 url
     @PostMapping("/add")
-    public DataResponseStoryDto addStory(Long topicId, DataResponseStoryDto drDto) {
-        // 문제가 발생하는 부분
-        // 예상 문제(토픽이 생성되기 전까지는 topicId가 없기 떄문에, 제일 처음 토픽을 추가할 때 문제가 생길 것으로 예상)
-        tService.save(new TopicDto(topicId, "", "", null));
+    public DataResponseStoryDto addStory(@Nullable Long topicId, DataResponseStoryDto drDto) {
+        // topicId가 null인 경우 새로운 토픽을 생성(최초 생성시 topicId가 null이기 때문에)
+        if (topicId == null) {
+            // 새 토픽 생성 로직, 반환된 토픽 ID를 가져옴
+            TopicDto newTopic = tService.save(new TopicDto(null, "", "", null));
+            topicId = newTopic.getId(); // 생성된 새 토픽의 ID를 사용
+        }
 
         MultipartFile f = drDto.getF();
         String fname = f.getOriginalFilename();
@@ -51,7 +54,7 @@ public class StoryController {
 
     // GPT가 처리한 내용 받아와서 tag, summary 수정하는 Url
     @PutMapping("/get/convertStory")
-    public ConvertResponseStoryDto saveConvertResponseStoryDto(ConvertResponseStoryDto crsDto) {
+    public ConvertResponseStoryDto saveConvertResponseStoryDto(@RequestBody ConvertResponseStoryDto crsDto) {
         return sService.saveConvertResponseStoryDto(crsDto);
     }
 
