@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {Card} from "react-bootstrap";
 import VerticallyCenteredModal from "./VerticallyCenteredModal";
 
-function CardForm() {
+function CardAddForm({updateContentArray, topicId}) {
 
     const [modalOpen, setModalOpen] = useState(false);
 
@@ -18,6 +18,8 @@ function CardForm() {
                     <VerticallyCenteredModal
                         show = {modalOpen}
                         onHide = {() => setModalOpen(false)}
+                        topicId = {topicId}
+                        updateContentArray={updateContentArray}
                     />
                     <Card.Body>
                         <Card.Text style={{wordWrap: "normal", textAlign: "center"}}>
@@ -30,4 +32,4 @@ function CardForm() {
     );
 }
 
-export default CardForm;
+export default CardAddForm;

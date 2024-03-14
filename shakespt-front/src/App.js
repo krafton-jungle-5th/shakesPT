@@ -31,7 +31,7 @@ function App() {
     };
 
     const axiosRequest = () => {
-        axios.get(`http://localhost:8080/topic?page=0&status=&keyword=`)
+        axios.get(`http://localhost:8000/topic?page=0&status=&keyword=`)
             .then((result) => {
                 updateContentArray(() => result.data.content); // 새로운 데이터로 업데이트
                 console.log(result.data.content);
@@ -48,7 +48,7 @@ function App() {
     }
 
     const productFetch = () => {
-        axios.get(`http://localhost:8080/topic?page=${page}&status=&keyword=`)
+        axios.get(`http://localhost:8000/topic?page=${page}&status=&keyword=`)
             .then((result)=>{
                 updateContentArray(draft => [...draft, ...result.data.content]); // 이전 상태를 변경하는 방식으로 업데이트
                 console.log(result.data.content)
@@ -99,6 +99,7 @@ function App() {
                     <VerticallyCenteredModal
                         show = {modalOpen}
                         onHide = {() => setModalOpen(false)}
+                        topicId = {null}
                     />
                     <DropdownButton className="dropdown-custom" id="dropdown-basic-button" title={status} onSelect={handleSelect}>
                         <Dropdown.Item eventKey="최신순">최신순</Dropdown.Item>
@@ -111,7 +112,7 @@ function App() {
                         {contentArray.map((props) => {
                             const {topicId, length, story} = props
                             return (
-                                <WrapVertical key={topicId} topicId={topicId} story={story} length={length}/>
+                                <WrapVertical updateContentArray={updateContentArray} key={topicId} topicId={topicId} story={story} length={length}/>
                             )
                         })}
                     <div ref={ref}></div>

@@ -2,7 +2,7 @@ import React from 'react';
 import CardForm from "./CardForm";
 import CardAddForm from "./CardAddForm";
 
-function WrapVertical({topicId, story, length}) {
+function WrapVertical({updateContentArray, topicId, story, length}) {
     return (
         <>
             <div className="content-container">
@@ -15,7 +15,7 @@ function WrapVertical({topicId, story, length}) {
                         )
                     })}
                     {length < 10 &&
-                        <CardAddForm/>
+                        <CardAddForm updateContentArray={updateContentArray} topicId={topicId}/>
                     }
                 </div>
 

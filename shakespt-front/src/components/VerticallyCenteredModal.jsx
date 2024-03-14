@@ -27,15 +27,22 @@ function VerticallyCenteredModal(props) {
         try {
             setIsLoading(true); // 통신 시작 시 isLoading 상태를 true로 설정
             const formData = new FormData();
-            formData.append('image', imgFile);
+            formData.append('f', imgFile);
             formData.append('prompt', prompt);
-            console.log(imgFile, prompt)
-            const response = await axios.post('YOUR_SERVER_ENDPOINT_URL', formData, {
+            if (props.topicId !== null && props.topicId !== undefined) {
+                formData.append('topicId', props.topicId);
+            }
+            console.log(imgFile, prompt);
+            const response = await axios.post('http://localhost:8000/story/add', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
                 },
             });
             console.log('서버 응답:', response.data);
+            // props.updateContentArray((draft) => {
+            //     response값으로 상태 업데이트
+            //     ...draft
+            // })
             props.onHide(); // 통신이 성공적으로 완료되면 모달을 닫음
         } catch (error) {
             console.error('서버 전송 중 오류 발생:', error);
