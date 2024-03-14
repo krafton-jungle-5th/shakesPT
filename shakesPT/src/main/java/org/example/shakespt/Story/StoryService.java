@@ -29,6 +29,8 @@ public class StoryService {
     private final StoryDao sDao;
     private final TopicDao tDao;
     private final TopicService tService;
+    private final RestTemplate restTemplate;
+    private final ObjectMapper objectMapper;
 
     @Value("${external.python.url}")
     private String pythonUrl;
@@ -104,27 +106,21 @@ public class StoryService {
 
     // 파이썬으로 데이터 전송하는 메소드
     public void sendToPython(ConvertRequestStoryDto crqDto) {
-        RestTemplate restTemplate = new RestTemplate();
+
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
-
         HttpEntity<ConvertRequestStoryDto> request = new HttpEntity<>(crqDto, headers);
-
         ResponseEntity<String> response = restTemplate.postForEntity(pythonUrl, request, String.class);
-
-        ObjectMapper objectMapper = new ObjectMapper();
 
         // JSON 문자열을 ConvertResponseStoryDto 객체로 변환
         try {
             ConvertResponseStoryDto crsDto = objectMapper.readValue(response.getBody(), ConvertResponseStoryDto.class);
-
             Story story = sDao.findById(crsDto.getStoryId()).orElse(null);
             Topic topic = tDao.findById(crsDto.getTopicId()).orElse(null);
             if (story != null && topic != null) {
                 story.setSummary(crsDto.getSummary());
                 topic.setTag(crsDto.getTag());
             }
-
             if (response.getStatusCode().is2xxSuccessful()) {
                 // 성공적으로 전송됨
                 System.out.println("Data successfully sent to external API");

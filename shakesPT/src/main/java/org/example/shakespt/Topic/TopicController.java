@@ -1,8 +1,6 @@
 package org.example.shakespt.Topic;
 
 import lombok.RequiredArgsConstructor;
-import org.example.shakespt.Story.StoryDto;
-import org.example.shakespt.Story.StoryService;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,7 +10,6 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/topic")
 public class TopicController {
     private final TopicService tService;
-    private final StoryService sService;
     @GetMapping("")
     public Page<ViewResponseTopicDto> getPagingTopic(@RequestParam(value = "page", defaultValue = "1", required = false) int page,
                                                      @RequestParam(value = "status", required = false) String status,

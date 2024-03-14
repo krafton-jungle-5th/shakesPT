@@ -2,7 +2,6 @@ package org.example.shakespt;
 
 import org.example.shakespt.Story.Story;
 import org.example.shakespt.Topic.Topic;
-import org.example.shakespt.Topic.TopicService;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,7 +19,7 @@ public class initDB {
     // 더미데이터 추가를 위해 서버가 작동시 data를 삽입하는 코드를 작성했습니다
     @PostConstruct
     public void init() {
-        initService.dbInitMember();
+        // initService.dbInitMember();
     }
 
     @Component
