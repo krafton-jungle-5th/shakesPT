@@ -1,9 +1,17 @@
 server:
   port: 8080
 
+external:
+  python:
+    url: "http://localhost:8000/story/add"
+
 spring:
   application:
     name: shakesPT
+  servlet:
+    multipart:
+      location: C:\JBJ\shakesPT\shakesPT\src\main\resources\images
+      max-file-size: 5MB
 
   sql:
     init:
