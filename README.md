@@ -4,7 +4,8 @@
 
 # ShakesPT
 
-### 🏔 이미지를 업로드 해 나만의 이야기 만들기!
+### 🏔 이미지를 업로드 해 나만의 이야기 만들기! 
+#### 이미지를 업로드 하면 Gemini가 재밌는 이야기를 작성해줍니다!
 <br>
 
 </div>
@@ -40,7 +41,7 @@
     </td>
     <td align="center" width="120px">
       <a href="https://github.com/youjuice" target="_blank">
-        <img src="https://avatars.githubusercontent.com/u/81979281?v=4" alt="유주 프로필" />
+        <img src="https://avatars.githubusercontent.com/u/81979281?v=4" alt="박유주 프로필" />
       </a>
     </td>
   </tr>
@@ -71,7 +72,7 @@
     </td>
     <td align="center">
       <a href="https://github.com/youjuice" target="_blank">
-       유주
+       박유주
       </a>
     </td> 
   </tr>
@@ -96,5 +97,5 @@
 
 <div align="center">
 
-[//]: # (<img width="600px" src='https://github.com/team-eungae/eungae-pediatric_appointment/assets/120021021/4ae6d55d-be08-4d55-9dd4-378f59df34c2'  alt="Skills"/>)
+<img width="600px" src='https://github.com/krafton-jungle-5th/shakesPT/assets/129564528/bd7de21d-e278-49c4-8b54-09f5726e746f'  alt="Skills"/>
 </div>
