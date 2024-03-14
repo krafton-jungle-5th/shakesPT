@@ -1,8 +1,6 @@
 <div align="center">
 
-<img width="200px" src="https://github.com/ghktndyd/eungae-pediatric_appointment/assets/120021021/ea71f4f6-d8ba-432a-9df3-02da33a31e94" alt="응애 이동하기"/>
-
-[![](https://img.shields.io/badge/-eungae.com-important?style=flat&logo=safari&logoColor=white&labelColor=5599ff&color=5599ff)](http://eungae.com)
+<img width="500px" src="https://github.com/krafton-jungle-5th/shakesPT/assets/129564528/d7899724-c5ae-4f5c-a106-c95a917d5ab2" alt="로고 이동하기"/>
 
 # ShakesPT
 
@@ -82,20 +80,21 @@
 ## 💻 Service
 
 
-|                                                           의사 등록                                                            |
+|                                                         최초 이야기 등록                                                          |
 |:--------------------------------------------------------------------------------------------------------------------------:|
-| <img src='https://github.com/ghktndyd/eungae-pediatric_appointment/assets/120021021/c1be8402-eb73-4013-9d09-8003f2b1a069'> |
-|                                                      <b>예약 목록 조회</b>                                                       |
-| <img src='https://github.com/ghktndyd/eungae-pediatric_appointment/assets/120021021/d62ee0ce-6485-474c-96fa-9f757ecd574a'> |
+| <img src='https://github.com/krafton-jungle-5th/shakesPT/assets/129564528/ba05c25d-14a3-4c9e-b184-08fa4cafa05f'> |
+|                                                    <b>이야기 이어서 등록하기</b>                                                     |
+| <img src='https://github.com/krafton-jungle-5th/shakesPT/assets/129564528/d28e8564-fad0-4de3-ae5a-ef375af17e68'> |
 
 ## ⚙️ Infra
 
 <div align="center">
-<img width="600px" src='![MacBook Pro 16_ - 3](https://github.com/krafton-jungle-5th/shakesPT/assets/129564528/0a97c72e-4118-4f78-9d11-b4ee3f7ef77b)'  alt="Infra"/>
+<img width="600px" src='https://github.com/krafton-jungle-5th/shakesPT/assets/129564528/0a97c72e-4118-4f78-9d11-b4ee3f7ef77b'  alt="Infra"/>
 </div>
 
 ## 🛠️ Skills
 
 <div align="center">
-<img width="600px" src='https://github.com/team-eungae/eungae-pediatric_appointment/assets/120021021/4ae6d55d-be08-4d55-9dd4-378f59df34c2'  alt="Skills"/>
+
+[//]: # (<img width="600px" src='https://github.com/team-eungae/eungae-pediatric_appointment/assets/120021021/4ae6d55d-be08-4d55-9dd4-378f59df34c2'  alt="Skills"/>)
 </div>
