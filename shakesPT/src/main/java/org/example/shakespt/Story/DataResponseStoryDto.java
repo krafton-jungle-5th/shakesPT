@@ -9,7 +9,7 @@ import org.springframework.web.multipart.MultipartFile;
 @Builder
 // 프론트에서 스프링으로 전송 DTO
 public class DataResponseStoryDto {
-
+    private Long topicId;
     private String fname;
     private String prompt;
     private MultipartFile f;
@@ -22,9 +22,9 @@ public class DataResponseStoryDto {
                 .build();
     }
 
-    public static Story toEntity(Long topicId,DataResponseStoryDto drDto){
+    public static Story toEntity(Long topicId, DataResponseStoryDto drDto) {
         return Story.builder()
-                .topic(new Topic(topicId,"","",null))
+                .topic(new Topic(topicId, "", "", null))
                 .fname(drDto.getFname())
                 .prompt(drDto.getPrompt())
                 .build();
