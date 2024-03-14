@@ -1,8 +1,8 @@
-from typing import List, Optional
+from typing import Optional
 from pydantic import BaseModel
 
 class Scene(BaseModel):
-    summary: Optional[List[str]] = None  # 문자열 리스트로 변경
+    summary: str 
     image: str
     prompt: str
     topicId: Optional[int] = None

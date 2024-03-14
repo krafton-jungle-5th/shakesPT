@@ -1,5 +1,4 @@
-import httpx
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI
 from scene import Scene
 from gen import generate_story
 
@@ -7,6 +6,7 @@ app = FastAPI()
 
 @app.post("/story/add")
 async def add(scene: Scene):
+    
     generated_data = generate_story(scene.image, scene.summary, scene.prompt, scene.topicId, scene.storyId)
     
     data = {

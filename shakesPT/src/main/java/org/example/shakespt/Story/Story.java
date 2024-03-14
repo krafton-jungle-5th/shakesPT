@@ -22,8 +22,6 @@ public class Story {
     private String summary; // 전체 줄거리
     private String prompt;  // gpt에게 긔띔하기
     private String fname;   // 이미지 이름
-//    @Column(columnDefinition = "BYTEA")
-//    private byte[] image;   // 이미지(base64)
 
     @ManyToOne
     // 명시적으로 연관관계를 선언해주지 않아 연관관계 매핑 테이블이 생성되어 수정했습니다.

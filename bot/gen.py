@@ -1,7 +1,6 @@
 import google.generativeai as genai
 import base64
 import imghdr
-import os
 
 from PIL import Image
 from io import BytesIO
@@ -19,7 +18,7 @@ def is_valid_image(img_data):
     return img_format is not None
 
 
-def generate_story(b64, summary, prompt,topicId,storyId):
+def generate_story(b64, summary, prompt, topicId, storyId):
     print(b64)
     print(summary)
     print(prompt)
@@ -35,23 +34,23 @@ def generate_story(b64, summary, prompt,topicId,storyId):
 
     img = Image.open(img_buffer)
 
-    story = ""
-    if summary == None:
-        summary = " "
+    # summary를 이어진 이야기의 시작으로 설정
+    story = summary
 
-    for i in summary:
-        story += i
+    # 이어진 이야기를 생성하기 위해 prompt를 설정
+    prompt = generate_story_prompt(story, prompt, len(summary))  # 여기가 수정된 부분입니다.
 
-    prompt = generate_story_prompt(story, prompt, len(summary))
-
+    # GPT 모델을 사용하여 이어진 이야기 생성
     response = vision_model.generate_content([prompt, img])
     response.resolve()
     try:
-        story += response.text
+        # 생성된 이어진 이야기를 저장
+        story = response.text
         print(response.text)
     except Exception as e:
         print(f'{type(e).__name__}: {e}')
 
+    # 생성된 이야기에 대한 태그 생성
     tag = generate_tag(story)
 
     return {"story": story,

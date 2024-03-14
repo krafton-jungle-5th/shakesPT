@@ -54,14 +54,20 @@ public class StoryService {
         // 토픽 스토리 갯수 체크
         statusCheck(topicId, stories);
         for (Story s : stories) {
-            crqDto.getSummaryList().add(SummaryListStoryDto.toDto(s));
+            String summary = s.getSummary();
+            if (summary == null) {
+                summary = ""; // 기본값 설정
+            }
+            crqDto.setSummary(crqDto.getSummary() == null ? summary : crqDto.getSummary().concat(summary));
         }
+        System.out.println("crqDto.getSummary() = " + crqDto.getSummary());
         try {
             // Base64 인코딩
             crqDto.setImage(imageToBase64(path, drDto.getFname()));
             // python 서버로 전송
             sendToPython(crqDto);
-        } catch (IOException e) {
+        } catch (
+                IOException e) {
             throw new RuntimeException(e);
         }
         return DataResponseStoryDto.toDto(story);
@@ -115,11 +121,15 @@ public class StoryService {
         // JSON 문자열을 ConvertResponseStoryDto 객체로 변환
         try {
             ConvertResponseStoryDto crsDto = objectMapper.readValue(response.getBody(), ConvertResponseStoryDto.class);
-            Story story = sDao.findById(crsDto.getStoryId()).orElse(null);
-            Topic topic = tDao.findById(crsDto.getTopicId()).orElse(null);
-            if (story != null && topic != null) {
-                story.setSummary(crsDto.getSummary());
-                topic.setTag(crsDto.getTag());
+
+            // 파이썬에서 생성된 새로운 이야기만을 저장
+            if (crsDto.getStoryId() != null) { // 새로운 이야기가 생성된 경우에만 처리
+                Story story = sDao.findById(crsDto.getStoryId()).orElse(null);
+                Topic topic = tDao.findById(crsDto.getTopicId()).orElse(null);
+                if (story != null && topic != null) {
+                    story.setSummary(crsDto.getSummary());
+                    topic.setTag(crsDto.getTag());
+                }
             }
             if (response.getStatusCode().is2xxSuccessful()) {
                 // 성공적으로 전송됨
@@ -132,6 +142,7 @@ public class StoryService {
             throw new RuntimeException(e);
         }
     }
+
 
     // 토픽 상태 변경
     public void statusCheck(Long topicId, List<Story> stories) {
