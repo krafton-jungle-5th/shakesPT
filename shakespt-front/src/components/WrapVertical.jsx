@@ -9,9 +9,9 @@ function WrapVertical({updateContentArray, topicId, story, length}) {
                 <div className="wrap-vertical">
                     {/*이곳에 props에서 받아온 image와 story map으로 돌리며 나타내야 함*/}
                     {story.map((props, index) => {
-                        const {image, summary} = props
+                        const {imageData, summary} = props
                         return (
-                            <CardForm key={index} image={image} story={summary}/>
+                            <CardForm key={index} imageData={imageData} story={summary}/>
                         )
                     })}
                     {length < 10 &&

@@ -1,8 +1,6 @@
 package org.example.shakespt.Topic;
 
 import lombok.RequiredArgsConstructor;
-import org.example.shakespt.Story.StoryDto;
-import org.example.shakespt.Story.StoryService;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 

@@ -39,10 +39,7 @@ function VerticallyCenteredModal(props) {
                 },
             });
             console.log('서버 응답:', response.data);
-            // props.updateContentArray((draft) => {
-            //     response값으로 상태 업데이트
-            //     ...draft
-            // })
+            // props.updateContentArray((draft) => draft(...draft))
             props.onHide(); // 통신이 성공적으로 완료되면 모달을 닫음
         } catch (error) {
             console.error('서버 전송 중 오류 발생:', error);
