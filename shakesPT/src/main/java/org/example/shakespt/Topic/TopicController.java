@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/topic")
 public class TopicController {
     private final TopicService tService;
-    private final StoryService sService;
     @GetMapping("")
     public Page<ViewResponseTopicDto> getPagingTopic(@RequestParam(value = "page", defaultValue = "1", required = false) int page,
                                                      @RequestParam(value = "status", required = false) String status,
